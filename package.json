@@ -41,7 +41,9 @@
     "@stablelib/sha256": "^1.0.1",
     "bs58": "^4.0.1",
     "idb": "^7.0.0",
-    "key-did-resolver": "^1.4.0"
+    "key-did-resolver": "^1.4.0",
+    "react-native-webview": "^11.17.2",
+    "react-native-webview-crypto": "^0.0.24"
   },
   "devDependencies": {
     "@types/bs58": "^4.0.1",

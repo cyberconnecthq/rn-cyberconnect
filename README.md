@@ -1,11 +1,9 @@
-# rn-cyberconnect
-
-library like js-cyberconnect,support react-native
-
 # CyberConnect
 
-The JavaScript library provides `CyberConnect` class which includes functions to allows users to control their decentralized identity([DIDs](https://www.w3.org/TR/did-core/)) and social graph data. The library encapsulates the complex authentication logic (authenticate to Ceramic Network) into easy-to-use functions.
+The JavaScript library which implement with react-native provides `CyberConnect` class which includes functions to allows users to control their decentralized identity([DIDs](https://www.w3.org/TR/did-core/)) and social graph data. The library encapsulates the complex authentication logic (authenticate to Ceramic Network) into easy-to-use functions.
 [CyberConnect API](https://docs.cyberconnect.me/connect-and-disconnect).
+
+See also the [CyberConnect](https://github.com/cyberconnecthq/js-cyberconnect).
 
 ## Getting started
 
@@ -15,6 +13,35 @@ The JavaScript library provides `CyberConnect` class which includes functions to
 npm install @cyberlab/cyberconnect-rn
 or
 yarn add @cyberlab/cyberconnect-rn
+```
+
+### Preparation
+
+Add `window.crypto.subtle` to your React Native application.It does this by communicating with a hidden WebView, which performs the actual computation.
+Refer to the [`react-native-webview-crypto`](https://github.com/webview-crypto/react-native-webview-crypto) repo for most of the code and some caveats.
+
+Rendering the PolyfillCrypto will start up a WebView to transparently proxy all the crypto calls to.
+
+```javascript
+import React, { Component } from 'react';
+import { View } from 'react-native';
+
+import App from './app';
+
+import { PolyfillCrypto } from '@cyberlab/cyberconnect-rn';
+
+class TopLevelComponent extends Component {
+  render() {
+    return (
+      <View>
+        <PolyfillCrypto />
+        <App />
+      </View>
+    );
+  }
+}
+
+AppRegistry.registerComponent('WhateverName', () => TopLevelComponent);
 ```
 
 ### Basic usage
@@ -38,29 +65,9 @@ const cyberConnect = new CyberConnect({
 
 - `namespace` - Your applciation name.
 - `env` - (optional) Env decides the endpoints. Now we have `staging` and `production`. (The default value is `Env.Production`).
-- `chain` - (optional) The blockchain you want to connect with. Now we support `ethereum` and `solana`. (The default is `Blockchain.ETH`).
+- `chain` - (optional) The blockchain you want to connect with. Now we only support `ethereum`.
 - `provider` - The corresponding provider of the given chain.
 - `signingMessageEntity` - (optional) Use to describe the entity users sign their message with. Users will see it when authorizing in the wallet `I authorize ${signingMessageEntity} from this device using signing key:`. The default entity is `CyberConnect`.
-
-See [Solana](#Solana) for Solana demo.
-
-#### Authenticate
-
-The `authenticate()` includes two signs for `AuthProvider` and [Capi10Link]("https://developers.ceramic.network/streamtypes/caip-10-link/api/").
-
-All users should sign for `AuthProvider` every session.
-
-Only first time users need to sign for `Capi10Link` and it may takes 5-10 seconds.
-
-Only authenticate once if call `cyberconnect.authenticate()` multiple time.
-
-You can run `cyberconnect.authenticate()` somewhere before doing `connect` to do the authentication first, then the user doesn't need to sign when calling `connect`.
-
-You can also call `connect` directly, then the user have to sign during the function call.
-
-```ts
-await cyberConnect.authenticate();
-```
 
 #### Connect
 
