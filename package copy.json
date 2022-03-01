@@ -1,6 +1,6 @@
 {
-  "name": "@cyberlab/cyberconnect-rn",
-  "version": "0.0.1",
+  "name": "@cyberlab/cyberconnect",
+  "version": "4.3.1",
   "description": "The JavaScript library that allows user to control their decentralized identity(DIDs) and social graph data.",
   "main": "lib/index.js",
   "bin": "lib/index.js",
@@ -15,28 +15,30 @@
     }
   },
   "keywords": [
-    "web3",
     "cyberconnect",
     "cybertino",
     "cybertinolab",
     "cyberlab",
     "cyberchat",
-    "connect",
-    "react-native"
+    "connect"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cyberconnecthq/rn-cyberconnectt"
+    "url": "git+https://github.com/cybertino/cyberconnect"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cyberconnecthq/rn-cyberconnect/issues"
+    "url": "https://github.com/cybertino/cyberconnect/issues"
   },
-  "homepage": "https://github.com/cyberconnecthq/rn-cyberconnect#readme",
+  "homepage": "https://github.com/cybertino/cyberconnect#readme",
   "dependencies": {
-    "@ethersproject/bytes": "^5.5.0",
-    "@ethersproject/strings": "^5.5.0",
+    "3id-did-provider": "^1.1.1",
+    "@3id/connect": "^0.2.5",
+    "@ceramicnetwork/3id-did-resolver": "^1.4.6",
+    "@ceramicnetwork/blockchain-utils-linking": "^1.5.1-rc.1",
+    "@ceramicnetwork/http-client": "^1.4.2",
+    "@ceramicstudio/idx": "^0.12.2",
     "@react-native-async-storage/async-storage": "^1.16.1",
     "@stablelib/sha256": "^1.0.1",
     "bs58": "^4.0.1",

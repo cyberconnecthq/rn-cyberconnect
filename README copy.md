@@ -1,7 +1,3 @@
-# rn-cyberconnect
-
-library like js-cyberconnect,support react-native
-
 # CyberConnect
 
 The JavaScript library provides `CyberConnect` class which includes functions to allows users to control their decentralized identity([DIDs](https://www.w3.org/TR/did-core/)) and social graph data. The library encapsulates the complex authentication logic (authenticate to Ceramic Network) into easy-to-use functions.
@@ -12,9 +8,9 @@ The JavaScript library provides `CyberConnect` class which includes functions to
 ### Installation
 
 ```sh
-npm install @cyberlab/cyberconnect-rn
+npm install @cyberlab/cyberconnect
 or
-yarn add @cyberlab/cyberconnect-rn
+yarn add @cyberlab/cyberconnect
 ```
 
 ### Basic usage
@@ -25,7 +21,7 @@ yarn add @cyberlab/cyberconnect-rn
 import CyberConnect, {
   Env,
   Blockchain,
-} from 'npm install @cyberlab/cyberconnect-rn';
+} from 'npm install @cyberlab/cyberconnect';
 
 const cyberConnect = new CyberConnect({
   namespace: 'CyberConnect',
@@ -87,6 +83,33 @@ cyberConnect.setAlias(targetAddr, alias);
 
 - `targetAddr` - The target wallet address to disconnect.
 - `alias` - The alias for the target address.
+
+### Solana
+
+You can get Solana provider from [@solana/wallet-adapter-react]('https://github.com/solana-labs/wallet-adapter)
+
+```ts
+import { useWallet } from '@solana/wallet-adapter-react';
+const solanaProvider = useWallet();
+```
+
+<b>Note</b>: You need to pass `chainRef` when you connect to Solana. Now we have three options: `Solana.SOLANA_MAINNET_CHAIN_REF`, `Solana.SOLANA_DEVNET_CHAIN_REF` and `Solana.SOLANA_TESTNET_CHAIN_REF`
+
+```ts
+import CyberConnect, {
+  Env,
+  Blockchain,
+  Solana,
+} from 'npm install @cyberlab/cyberconnect';
+
+const cyberConnect = new CyberConnect({
+  namespace: 'CyberConnect',
+  env: Env.Production,
+  chain: Blockchain.ETH,
+  provider: solanaProvider,
+  chainRef: Solana.SOLANA_MAINNET_CHAIN_REF,
+});
+```
 
 ## Contributing
 
